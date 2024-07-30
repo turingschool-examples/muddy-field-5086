@@ -19,14 +19,15 @@ RSpec.describe "Mechanic Show Page" do
   # User Story 1
   it "displays their name, years of experience, and the names of all rides they are working on." do
     visit "/mechanics/#{@mechanic_1.id}"
-
+    
+    
     expect(page).to have_content(@mechanic_1.name)
-    expect(page).to have_content(@mechanic_1.years_of_experience)
+    expect(page).to have_content(@mechanic_1.years_experience)
     expect(page).to have_content(@ride_1.name)
     expect(page).to have_content(@ride_2.name)
 
     expect(page).to_not have_content(@mechanic_2.name)
-    expect(page).to_not have_content(@mechanic_2.years_of_experience)
+    expect(page).to_not have_content(@mechanic_2.years_experience)
     expect(page).to_not have_content(@ride_3.name)
   end
 end
