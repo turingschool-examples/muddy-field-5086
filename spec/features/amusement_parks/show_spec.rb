@@ -1,11 +1,6 @@
 require "rails_helper"
 
-RSpec.describe AmusementPark, type: :model do
-  describe "relationships" do
-    it { should have_many(:rides) }
-    it { should have_many(:mechanics).through(:rides) }
-  end
-
+RSpec.describe "the amusement park show page" do
   before(:each) do
     @mechanic1 = Mechanic.create!(name: "Fred", years_experience: 5)
     @mechanic2 = Mechanic.create!(name: "Shaggy", years_experience: 2)
@@ -30,11 +25,41 @@ RSpec.describe AmusementPark, type: :model do
     RideMechanic.create!(ride_id: @ride6.id, mechanic_id: @mechanic2.id)
   end
 
-  describe "instance methods" do
-    it "unique_mechanics" do
-      expect(@amusement_park1.unique_mechanics).to eq([@mechanic1, @mechanic3])
-      expect(@amusement_park2.unique_mechanics).to eq([@mechanic2])
-      expect(@amusement_park3.unique_mechanics).to eq([])
+  it "displays the park's attributes and a unique list of its mechanics" do
+    visit amusement_park_path(@amusement_park1.id)
+
+    expect(page).to have_content("Park: #{@amusement_park1.name}")
+    expect(page).to have_content("Price of Admission: $#{@amusement_park1.admission_cost}")
+
+    within("#park_mechanics") do
+      expect(page).to have_content(@mechanic1.name)
+      expect(page).to have_content(@mechanic3.name)
+    end
+  end
+
+  it "displays another park's attributes and a unique list of its mechanics" do
+    visit amusement_park_path(@amusement_park2.id)
+
+    expect(page).to have_content("Park: #{@amusement_park2.name}")
+    expect(page).to have_content("Price of Admission: $#{@amusement_park2.admission_cost}")
+
+    within("#park_mechanics") do
+      expect(page).to have_content(@mechanic2.name)
+      expect(page).to_not have_content(@mechanic1.name)
+      expect(page).to_not have_content(@mechanic3.name)
+    end
+  end
+
+  it "displays another park's attributes and a unique list of its mechanics" do
+    visit amusement_park_path(@amusement_park3.id)
+
+    expect(page).to have_content("Park: #{@amusement_park3.name}")
+    expect(page).to have_content("Price of Admission: $#{@amusement_park3.admission_cost}")
+
+    within("#park_mechanics") do
+      expect(page).to_not have_content(@mechanic1.name)
+      expect(page).to_not have_content(@mechanic2.name)
+      expect(page).to_not have_content(@mechanic3.name)
     end
   end
 end
