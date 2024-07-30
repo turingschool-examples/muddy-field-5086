@@ -1,0 +1,23 @@
+<div class="mechanic-info">
+  <h1><%= @mechanic.name %></h1>
+  <p>Years of Experience: <%= @mechanic.years_experience %></p>
+</div>
+
+<div class="rides">
+  <h2>Current rides they’re working on:</h2>
+  <ul>
+    <% @mechanic.rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="add-ride-form">
+  <h3>Add a ride to workload:</h3>
+  <%= form_with url: ride_mechanics_path, method: :post do %>
+    <%= hidden_field_tag :mechanic_id, @mechanic.id %>
+    <%= label_tag :ride_id, 'Ride Id' %>
+    <%= text_field_tag :ride_id %>
+    <%= submit_tag 'Submit' %>
+  <% end %>
+</div>
