@@ -7,3 +7,10 @@
         <li><%= ride.name %></li>
     <% end %>
 </ul>
+
+<h2>Add a Ride:</h2>
+<%= form_with url: add_ride_mechanic_path(@mechanic), method: :post do %>
+    <label for="ride_id">Ride Id:</label>
+    <%= text_field_tag :ride_id %>
+    <%= submit_tag "Submit" %>
+<% end %>
