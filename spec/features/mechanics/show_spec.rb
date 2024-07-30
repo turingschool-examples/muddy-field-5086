@@ -31,5 +31,26 @@ RSpec.describe "Mechanic Show Page", type: :feature do
       expect(page).to have_content("#{@mechanic_1.current_rides.name}")
     end
   end
+
+  # USER STORY #2
+  describe "adding a ride to a mechanic" do
+    it "displays a form to add a ride workload to that mechanic" do
+      # When I go to a mechanic's show page
+      visit "/mechanics/#{@mechanic_1.id}"
+
+      # I see a form to add a ride to their workload
+      expect(page).to have_field("Add Ride")
+      
+      # When I fill in that field with an id of an existing ride and click Submit
+      fill_in :add_ride, with: "#{@jaws.name}"
+      click_button "Submit"
+      
+      # I’m taken back to that mechanic's show page
+      expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+
+      # And I see the name of that newly added ride on this mechanic's show page.
+      expect(page).to have_content("#{@jaws.name}")
+    end
+  end
 end
 
