@@ -70,4 +70,45 @@ RSpec.describe "the mechanic show page" do
       expect(page).to_not have_content(@ride6.name)
     end
   end
+
+  it "has a form to add a ride to this mechanic's workload by the ride's ID" do
+    visit mechanic_path(@mechanic1.id)
+
+    fill_in :ride_id, with: @ride2.id
+    click_button "Submit"
+
+    expect(current_path).to eq(mechanic_path(@mechanic1.id))
+
+    within("#mechanic_rides") do
+      expect(page).to have_content(@ride2.name)
+    end
+  end
+
+  it "has a form to add a ride to this mechanic's workload by the ride's ID" do
+    visit mechanic_path(@mechanic3.id)
+
+    fill_in :ride_id, with: @ride1.id
+    click_button "Submit"
+
+    expect(current_path).to eq(mechanic_path(@mechanic3.id))
+
+    fill_in :ride_id, with: @ride2.id
+    click_button "Submit"
+
+    expect(current_path).to eq(mechanic_path(@mechanic3.id))
+
+    fill_in :ride_id, with: @ride3.id
+    click_button "Submit"
+
+    expect(current_path).to eq(mechanic_path(@mechanic3.id))
+
+    within("#mechanic_rides") do
+      expect(page).to have_content(@ride1.name)
+      expect(page).to have_content(@ride2.name)
+      expect(page).to have_content(@ride3.name)
+      expect(page).to_not have_content(@ride4.name)
+      expect(page).to_not have_content(@ride5.name)
+      expect(page).to_not have_content(@ride6.name)
+    end
+  end
 end
