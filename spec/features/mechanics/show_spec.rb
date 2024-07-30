@@ -1,0 +1,33 @@
+require "rails_helper"
+
+RSpec.describe "the mechanic show" do
+
+  before :each do
+    @mechanic1 = Mechanic.create!(name: "Johny", years_experience: 10)
+    @mechanic2 = Mechanic.create!(name: "Billy", years_experience: 5)
+
+    @ride1 = Ride.create!(name: "Crazy Monkey", thrill_rating: 10, open: true)
+    @ride2 = Ride.create!(name: "Rocket", thrill_rating: 9, open: true)
+    @ride3 = Ride.create!(name: "Something Good", thrill_rating: 13, open: false)
+    @ride4 = Ride.create!(name: "Death from Above", thrill_rating: 15, open: true)
+    @ride5 = Ride.create!(name: "The Hurler", thrill_rating: 7, open: false)
+
+    @mechanic_ride1 = MechanicRide.create!(mechanic: @mechanic1, ride: @ride1)
+    @mechanic_ride2 = MechanicRide.create!(mechanic: @mechanic1, ride: @ride2)
+    @mechanic_ride3 = MechanicRide.create!(mechanic: @mechanic1, ride: @ride3)
+    @mechanic_ride4 = MechanicRide.create!(mechanic: @mechanic2, ride: @ride4)
+    @mechanic_ride5 = MechanicRide.create!(mechanic: @mechanic2, ride: @ride5)
+    @mechanic_ride6 = MechanicRide.create!(mechanic: @mechanic1, ride: @ride4)
+ 
+  end
+
+  describe "As a visitor do" do
+    describe "when I visit a mechanics show page" do 
+      it "displays the name, years of experience, and names of all rides they are working on" do
+        visit mechanic_path(@mechanic1)
+
+        expect(page).to have_content("This is the User view")
+      end
+    end
+  end
+end
