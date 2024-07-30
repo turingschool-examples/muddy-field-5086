@@ -9,3 +9,13 @@
     </section>
   <% end %>
 </section>
+
+<section id="park_rides">
+  <h3>Park Rides</h3>
+  <% @amusement_park.rides.ordered_by_mechanic.each do |ride| %>
+    <section id= "ride-<%= ride.id %>">
+      <p>Ride Name: <%= ride.name %></p>
+      <p>Average Experience of Ride Mechanics: <%= ride.average_experience %></p>
+    </section>
+  <% end %>
+</section>
