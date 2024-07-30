@@ -30,13 +30,13 @@ RSpec.describe "the mechanic show" do
         visit mechanic_path(@mechanic1)
 
         expect(page).to have_content("Mechanic #{@mechanic1.id}")
-        expect(page).to have_content("Name: #{@mechanic1.id}")
-        expect(page).to have_content("Years of Experience: #{@mechanic1.id}")
-        expect(page).to have_content("Rides: #{@mechanic1.id}")
-        expect(page).to have_content("#{@ride1.id}")
-        expect(page).to have_content("#{@ride2.id}")
-        expect(page).to have_content("#{@ride3.id}")
-        expect(page).to have_content("#{@ride4.id}")
+        expect(page).to have_content("Name: #{@mechanic1.name}")
+        expect(page).to have_content("Years of Experience: #{@mechanic1.years_experience}")
+        expect(page).to have_content("Rides: #{@mechanic1.rides}")
+        expect(page).to have_content("#{@ride1.name}")
+        expect(page).to have_content("#{@ride2.name}")
+        expect(page).to have_content("#{@ride3.name}")
+        expect(page).to have_content("#{@ride4.name}")
       end
     end
   end
