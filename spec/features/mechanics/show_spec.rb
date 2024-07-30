@@ -37,6 +37,21 @@ RSpec.describe "the mechanic show" do
         expect(page).to have_content("#{@ride2.name}")
         expect(page).to have_content("#{@ride3.name}")
         expect(page).to have_content("#{@ride4.name}")
+
+        expect(page).to_not have_content("Mechanic #{@mechanic2.id}")
+        expect(page).to_not have_content("Name: #{@mechanic2.name}")
+        expect(page).to_not have_content("Years of Experience: #{@mechanic2.years_experience}")
+      end
+
+      it "displays a form to add a ride to the mechanic" do
+        visit mechanic_path(@mechanic2)
+
+        expect(page).to have_content("Mechanic #{@mechanic2.id}")
+        expect(page).to have_content("Name: #{@mechanic2.name}")
+        expect(page).to have_content("Years of Experience: #{@mechanic2.years_experience}")
+        expect(page).to have_content("Rides:")
+        expect(page).to have_content("#{@ride4.name}")
+        expect(page).to have_content("#{@ride5.name}")
       end
     end
   end
