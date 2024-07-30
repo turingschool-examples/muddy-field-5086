@@ -42,8 +42,17 @@ RSpec.describe "the amusement park show" do
         expect(page).to have_content("Admission Cost: #{@six_flags.admission_cost}")
 
         expect(page).to have_content("Mechanics")
-        expect(page).to have_content("")
+        expect(page).to have_content("#{@mechanic1.name}")
 
+        visit amusement_park_path(@universal)
+
+        expect(page).to have_content("Amusement Park #{@universal.id}")
+        expect(page).to have_content("__#{@universal.name}__")
+        expect(page).to have_content("Admission Cost: #{@universal.admission_cost}")
+
+        expect(page).to have_content("Mechanics")
+        expect(page).to have_content("#{@mechanic1.name}")
+        expect(page).to have_content("#{@mechanic2.name}")
       end
     end
   end
