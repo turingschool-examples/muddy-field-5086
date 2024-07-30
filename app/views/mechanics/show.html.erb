@@ -8,6 +8,14 @@
     <p><%= ride.name %></p>
 <% end %>
 
+<h2> Add Ride To Workload </h2>
+
+<%= form_with url: mechanic_path(@mechanic), method: :patch, local: true do %>
+    <%= label_tag :add_ride, "Add Ride" %>
+    <%= text_field_tag :add_ride %>
+    <%= submit_tag "Submit" %>
+<% end %>
+
 save_and_open_page
 
 
