@@ -52,6 +52,19 @@ RSpec.describe "the mechanic show" do
         expect(page).to have_content("Rides:")
         expect(page).to have_content("#{@ride4.name}")
         expect(page).to have_content("#{@ride5.name}")
+
+        expect(page).to have_content("Add a ride to Mechanic:")
+
+        fill_in "ride", with: "#{@ride2.id}"
+
+        click_button "Submit"
+
+        expect(page).to have_current_path(@mechanic_path()@mechanic2)
+
+        expect(page).to have_content("Rides:")
+        expect(page).to have_content("#{@ride2.name}")
+        expect(page).to have_content("#{@ride4.name}")
+        expect(page).to have_content("#{@ride5.name}")
       end
     end
   end
