@@ -1,6 +1,6 @@
 class AmusementParksController < ApplicationController
   def show
     @amusement_park = AmusementPark.find(params[:id])
-    @mechanics = @amusement_park.rides.joins(:mechanics).distinct
+    @mechanics = Mechanic.joins(:rides).where(rides: { amusement_park_id: @amusement_park.id }).distinct
   end
 end
