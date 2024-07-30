@@ -1,0 +1,8 @@
+<%= form_with url: "/ride_mechanics", method: :post, data: {turbo: false} do |form| %>
+  <%= form.label :ride_id %>
+  <%= form.number_field :ride_id %>
+
+  <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+
+  <%= form.submit 'Submit' %>
+<% end %>

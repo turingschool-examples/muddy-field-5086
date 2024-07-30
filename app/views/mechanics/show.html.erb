@@ -7,3 +7,5 @@
     <p><%= ride.name %></p>
   <% end %>
 </section>
+
+<p><%= button_to "Add Ride to Mechanic", "/ride_mechanics/new", method: :get, params: {mechanic_id: @mechanic.id} %></p>
