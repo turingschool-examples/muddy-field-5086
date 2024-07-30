@@ -17,11 +17,12 @@ RSpec.describe "Amusement Park Show Page" do
     @mech_ride_2 = MechanicRide.create!(mechanic: @mechanic_2, ride: @ride_3)
   end
 
+  # User Story 3
   it "displays the name and price for that amusement park" do
     visit "/amusement_parks/#{@amusement_park.id}"
 
     expect(page).to have_content(@amusement_park.name)
     expect(page).to have_content(@amusement_park.admission_cost)   
   end
-  
+
 end
