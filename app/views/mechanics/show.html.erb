@@ -1,0 +1,10 @@
+<!-- app/views/mechanics/show.html.erb -->
+div id="mechanic_info">
+  <h1>Mechanic Info</h1>
+  <h3>Name: <%= @mechanic.name %></h3>
+  <h2>Years of Experience: <%= @mechanic.years_of_experience %></h2>
+  <p>Rides: 
+    <% @mechanic.rides.each do |ride| %>
+      <%= "#{ride.name} ', '" %>
+    <% end %></p>
+</div>
