@@ -55,7 +55,7 @@ RSpec.describe "the mechanic show" do
 
         expect(page).to have_content("Add a ride to Mechanic:")
 
-        fill_in "ride", with: "#{@ride2.id}"
+        fill_in "ride_id", with: "#{@ride2.id}"
 
         click_button "Submit"
 
