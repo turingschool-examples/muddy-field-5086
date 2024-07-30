@@ -1,0 +1,13 @@
+<h1> Mechanic Info </h1>
+
+<p>Name: <%= @mechanic.name %></p>
+<p>Years of Experience: <%= @mechanic.years_experience %></p>
+
+<p>Assigned Rides</p>
+  <% @mechanic.current_rides.each do |ride| %>
+    <p><%= ride.name %></p>
+<% end %>
+
+save_and_open_page
+
+
