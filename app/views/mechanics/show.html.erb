@@ -2,14 +2,16 @@
 <p> Name: <%= @mechanic.name %> </p>
 <p> Years of Experience: <%= @mechanic.years_experience %> </p>
 <p> Rides: 
-  <% @mechanic.rides.each do |ride| %>   
+  <% @mechanic.rides.each do |ride| %>
     <%= ride.name %>
+    <br>
   <% end %>
 </p>
 
 <h3> Add a ride to Mechanic: </h3>
 <%= form_with url: mechanic_rides_path, method: :post, local: true do |form| %>
-  <p> <%= form.label :ride_id %> </p> 
-  <p> <%= form.number_field :ride_id %> </p>
+  <p> <%= form.label :ride_id %>
+  <%= form.number_field :ride_id %> </p>
   <p> <%= form.submit "Submit" %> </p>
+  <%= hidden_field_tag :mechanic_id, @mechanic.id %> 
 <% end %>

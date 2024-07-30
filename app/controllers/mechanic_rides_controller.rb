@@ -7,10 +7,8 @@ class MechanicRidesController < ApplicationController
   end
 
   def create 
-    binding.pry
-    mechanic_id = Mechanic.find(params[:id])
-    MechanicRide.create(mechanic_id: params[:id], ride_id: params[:ride_id])
-
+    MechanicRide.create(mechanic_id: params[:mechanic_id], ride_id: params[:ride_id])
+    mechanic_id = params[:mechanic_id]
     redirect_to mechanic_path(mechanic_id)
   end
 end

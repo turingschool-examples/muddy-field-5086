@@ -59,7 +59,7 @@ RSpec.describe "the mechanic show" do
 
         click_button "Submit"
 
-        expect(page).to have_current_path(@mechanic_path(@mechanic2))
+        expect(page).to have_current_path(mechanic_path(@mechanic2))
 
         expect(page).to have_content("Rides:")
         expect(page).to have_content("#{@ride2.name}")
