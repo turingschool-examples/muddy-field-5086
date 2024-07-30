@@ -1,0 +1,9 @@
+<p><%= "Name: #{@mechanic.name}" %></p>
+
+<p><%= "Years of Experience: #{@mechanic.years_experience}"%>
+
+<section class="assigned-rides">
+  <% @mechanic.rides.each do |ride| %>
+    <p><%= ride.name %></p>
+  <% end %>
+</section>
