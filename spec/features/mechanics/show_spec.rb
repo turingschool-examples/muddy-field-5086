@@ -26,7 +26,14 @@ RSpec.describe "the mechanic show" do
       it "displays the name, years of experience, and names of all rides they are working on" do
         visit mechanic_path(@mechanic1)
 
-        expect(page).to have_content("This is the User view")
+        expect(page).to have_content("Mechanic #{@mechanic1.id}")
+        expect(page).to have_content("Name: #{@mechanic1.id}")
+        expect(page).to have_content("Years of Experience: #{@mechanic1.id}")
+        expect(page).to have_content("Rides: #{@mechanic1.id}")
+        expect(page).to have_content("#{@ride1.id}")
+        expect(page).to have_content("#{@ride2.id}")
+        expect(page).to have_content("#{@ride3.id}")
+        expect(page).to have_content("#{@ride4.id}")
       end
     end
   end
