@@ -18,7 +18,6 @@ RSpec.describe "the mechanic show" do
     @mechanic_ride4 = MechanicRide.create!(mechanic: @mechanic2, ride: @ride4)
     @mechanic_ride5 = MechanicRide.create!(mechanic: @mechanic2, ride: @ride5)
     @mechanic_ride6 = MechanicRide.create!(mechanic: @mechanic1, ride: @ride4)
- 
   end
 
   describe "As a visitor do" do
