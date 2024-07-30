@@ -10,7 +10,8 @@ RSpec.describe "Mechanic Show Page" do
     @ride_1 = Ride.create!(name: "Twister", thrill_rating: 7, open: true, amusement_park: @amusement_park)
     @ride_2 = Ride.create!(name: "Tea Cups", thrill_rating: 4, open: true, amusement_park: @amusement_park)
     @ride_3 = Ride.create!(name: "El Diablo", thrill_rating: 9, open: false, amusement_park: @amusement_park)
-    
+    @ride_4 = Ride.create!(name: "Log Ride", thrill_rating: 5, open: false, amusement_park: @amusement_park)
+
     @mech_ride_1 = MechanicRide.create!(mechanic: @mechanic_1, ride: @ride_1)
     @mech_ride_1 = MechanicRide.create!(mechanic: @mechanic_1, ride: @ride_2)
     @mech_ride_2 = MechanicRide.create!(mechanic: @mechanic_2, ride: @ride_3)
@@ -29,5 +30,19 @@ RSpec.describe "Mechanic Show Page" do
     expect(page).to_not have_content(@mechanic_2.name)
     expect(page).to_not have_content(@mechanic_2.years_experience)
     expect(page).to_not have_content(@ride_3.name)
+  end
+
+  # User Story 2
+  it "can add a ride to a mechanic" do
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    expect(page).to have_content("Add ride to Workload")
+    expect(page).to have_field("Ride Id")
+
+    fill_in "Ride Id", with: @ride_4.id
+    click_button "Submit"
+
+    expect(current_path).to eq "/mechanics/#{@mechanic_1.id}"
+    expect(page).to have_content(@ride_4.name)
   end
 end
