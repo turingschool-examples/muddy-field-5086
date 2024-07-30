@@ -1,0 +1,8 @@
+<h1> Mechanic <%= @mechanic.id %> </h1>
+<p> Name: <%= @mechanic.name %> </p>
+<p> Years of Experience: <%= @mechanic.years_experience %> </p>
+<p> Rides: 
+  <% @mechanic.rides.each do |ride| %>   
+    <%= ride.name %>
+  <% end %>
+</p>
