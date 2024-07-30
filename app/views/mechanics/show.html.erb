@@ -9,3 +9,10 @@
     <li><%= ride.name %></li>
   <% end %>
 </ul>
+
+<h2> Add ride to Workload </h2>
+    <%= form_with url: "/mechanics/#{@mechanic.id}/add_ride", method: :patch, local: true do |form| %>
+      <%= label_tag :ride_id, "Ride Id:" %>
+      <%= text_field_tag :ride_id %>
+      <%= submit_tag "Submit" %>
+    <% end %> 
